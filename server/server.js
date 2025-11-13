@@ -8,7 +8,7 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const path = require('path');
 const connectDB = require('./config/db');
-
+const applicationRoutes = require('./routes/application');
 //  Initialize app
 const app = express();
 
@@ -42,3 +42,4 @@ process.on('unhandledRejection', (err) =>
 process.on('uncaughtException', (err) =>
   console.error('UNCAUGHT EXCEPTION', err)
 );
+app.use('/api/applications', applicationRoutes);
