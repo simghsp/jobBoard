@@ -8,6 +8,7 @@ const User = require('../models/User');
 const mailer = require('../utils/mailer');
 
 
+
 // POST /api/applications/:jobId/apply
 router.post('/:jobId/apply', auth, upload.single('resume'), async (req, res) => {
 try {
@@ -24,7 +25,7 @@ if (employer && employer.email) {
 await mailer.sendMail({
 to: employer.email,
 subject: `New application for ${job.title}`,
-text: `${candidate.name} applied for ${job.title}. Resume: ${resumeUrl}`
+text: `${candidate.fullName} applied for ${job.title}. Resume: ${resumeUrl}`
 });
 }
 res.json({ msg: 'Application submitted', application });
